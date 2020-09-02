@@ -1,0 +1,109 @@
+PS C:\> get-command -module Boxstarter.Bootstrapper
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Function        Enter-BoxstarterLogable                            2.12.0     Boxstarter.Bootstrapper
+Function        Get-BoxstarterTempDir                              2.12.0     Boxstarter.Bootstrapper
+Function        Invoke-BoxStarter                                  2.12.0     Boxstarter.Bootstrapper
+Function        Invoke-Reboot                                      2.12.0     Boxstarter.Bootstrapper
+Function        Start-TimedSection                                 2.12.0     Boxstarter.Bootstrapper
+Function        Stop-TimedSection                                  2.12.0     Boxstarter.Bootstrapper
+Function        Test-PendingReboot                                 2.12.0     Boxstarter.Bootstrapper
+Function        Write-BoxstarterMessage                            2.12.0     Boxstarter.Bootstrapper
+
+PS C:\Users\HOME> get-command -module Boxstarter.Common
+
+CommandType     Name
+-----------     ----
+Function        Confirm-Choice
+Function        Create-BoxstarterTask
+Function        Enter-BoxstarterLogable
+Function        Enter-Dotnet4
+Function        Get-CurrentUser
+Function        Get-HttpResource
+Function        Get-IsMicrosoftUpdateEnabled
+Function        Get-IsRemote
+Function        Invoke-FromTask
+Function        Invoke-RetriableScript
+Function        Log-BoxStarterMessage
+Function        Out-BoxstarterLog
+Function        Remove-BoxstarterError
+Function        Remove-BoxstarterTask
+Function        Start-TimedSection
+Function        Stop-TimedSection
+Function        Test-Admin
+Function        Write-BoxstarterLogo
+Function        Write-BoxstarterMessage
+
+PS C:\Users\HOME> get-command -module BoxStarter.WinConfig 
+
+CommandType     Name
+-----------     ----
+Function        Disable-BingSearch
+Function        Disable-GameBarTips
+Function        Disable-InternetExplorerESC
+Function        Disable-MicrosoftUpdate
+Function        Disable-UAC
+Function        Enable-MicrosoftUpdate
+Function        Enable-RemoteDesktop
+Function        Enable-UAC
+Function        Get-LibraryNames
+Function        Get-UAC
+Function        Install-WindowsUpdate
+Function        Move-LibraryDirectory
+Function        Set-CornerNavigationOptions
+Function        Set-ExplorerOptions
+Function        Set-StartScreenOptions
+Function        Set-TaskbarOptions
+Function        Set-TaskbarSmall
+Function        Set-WindowsExplorerOptions
+Function        Update-ExecutionPolicy
+
+PS C:\> get-command -module Boxstarter.Chocolatey
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Alias           Enable-BoxstarterVM                                2.12.0     Boxstarter.Chocolatey
+Alias           Install-ChocolateyInstallPackage                   2.12.0     Boxstarter.Chocolatey
+Alias           Write-Host                                         2.12.0     Boxstarter.Chocolatey
+Function        Enable-BoxstarterClientRemoting                    2.12.0     Boxstarter.Chocolatey
+Function        Enable-BoxstarterCredSSP                           2.12.0     Boxstarter.Chocolatey
+Function        Export-BoxstarterVars                              2.12.0     Boxstarter.Chocolatey
+Function        Get-BoxStarterConfig                               2.12.0     Boxstarter.Chocolatey
+Function        Get-PackageRoot                                    2.12.0     Boxstarter.Chocolatey
+Function        Install-BoxstarterPackage                          2.12.0     Boxstarter.Chocolatey
+Function        Install-ChocolateyInstallPackageOverride           2.12.0     Boxstarter.Chocolatey
+Function        Invoke-BoxStarterBuild                             2.12.0     Boxstarter.Chocolatey
+Function        Invoke-BoxstarterFromTask                          2.12.0     Boxstarter.Chocolatey
+Function        Invoke-Chocolatey                                  2.12.0     Boxstarter.Chocolatey
+Function        Invoke-ChocolateyBoxstarter                        2.12.0     Boxstarter.Chocolatey
+Function        New-BoxstarterPackage                              2.12.0     Boxstarter.Chocolatey
+Function        New-PackageFromScript                              2.12.0     Boxstarter.Chocolatey
+Function        Resolve-VMPlugin                                   2.12.0     Boxstarter.Chocolatey
+Function        Set-BoxStarterConfig                               2.12.0     Boxstarter.Chocolatey
+Function        Set-BoxstarterShare                                2.12.0     Boxstarter.Chocolatey
+Function        Write-HostOverride                                 2.12.0     Boxstarter.Chocolatey
+
+PS C:\> help nuget
+
+Name                              Category  Module                    Synopsis
+----                              --------  ------                    --------
+Install-BoxstarterPackage         Function  Boxstarter.Chocolatey     Installs a Boxstarter package
+Invoke-ChocolateyBoxstarter       Function  Boxstarter.Chocolatey     Invokes the installation of a Boxstarter package
+New-PackageFromScript             Function  Boxstarter.Chocolatey     Creates a NuGet package from a Chocolatey script
+Set-BoxStarterConfig              Function  Boxstarter.Chocolatey     Sets persist-able Boxstarter configuration settings.
+Find-Package                      Cmdlet    PackageManagement         Finds software packages in available package sources.
+Find-PackageProvider              Cmdlet    PackageManagement         Returns a list of Package Management package providers available for installation.
+Get-PackageProvider               Cmdlet    PackageManagement         Returns a list of package providers that are connected to Package Management.
+Get-PackageSource                 Cmdlet    PackageManagement         Gets a list of package sources that are registered for a package provider.
+Import-PackageProvider            Cmdlet    PackageManagement         Adds Package Management package providers to the current session.
+Install-Package                   Cmdlet    PackageManagement         Installs one or more software packages.
+Install-PackageProvider           Cmdlet    PackageManagement         Installs one or more Package Management package providers.
+Register-PackageSource            Cmdlet    PackageManagement         Adds a package source for a specified package provider.
+Save-Package                      Cmdlet    PackageManagement         Saves packages to the local computer without installing them.
+Set-PackageSource                 Cmdlet    PackageManagement         Replaces a package source for a specified package provider.
+Uninstall-Package                 Cmdlet    PackageManagement         Uninstalls one or more software packages.
+Unregister-PackageSource          Cmdlet    PackageManagement         Removes a registered package source.
+about_boxstarter_chocolatey       HelpFile                            Describes how to use Boxstarter's Chocolatey module to setup a new
+About_Boxstarter_Variable_In_C... HelpFile                            A Hashtable for persisting Boxstarter settings.
+
