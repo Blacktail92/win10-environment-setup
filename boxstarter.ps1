@@ -3,17 +3,6 @@
 # bi baska script reg backuplarini alir onlari git e yukler sonra raw linklerini alir
 # temp e work dir olustur, gerekli hersey oraya insin, oradan kurulum yap, kurulum bitince klasoru sil
 
-
-
-
-
-
-
-
-
-
-
-
 # Elevate the script.
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
     Start-Process PowerShell -Verb RunAs "-NoProfile -ExecutionPolicy Bypass -Command `"cd '$pwd'; & '$PSCommandPath';`"";
