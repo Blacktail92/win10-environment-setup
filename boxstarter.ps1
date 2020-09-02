@@ -1,6 +1,6 @@
 # iso icinde her turden sadece bir adet dosya olmalı
 # registry entry leri gibi sik degismeyen dosyaları gist yapabilirim
-# bi baska script reg backuplarini alir onlari git e yukler sonra raw linklerini alir
+# bi baska script .reg vb dosyalarin backuplarini alir onlari git e yukler
 # temp e work dir olustur, gerekli hersey oraya insin, oradan kurulum yap, kurulum bitince klasoru sil
 
 # Elevate the script.
@@ -37,13 +37,14 @@ $box_choco_pkgs = @(
     'toolwiz-time-freeze'
     'filezilla.server'
     'everything'
+    'vscode'
+    'git'
+    'github-desktop'
     'virtualbox'
     'virtualmachineconverter'
     'winscp'
     'wincdemu'
-    'vscode'
     'sharex'
-    'git'
     # 'ntlite-free' # error: checksums do not match.
 )
 
