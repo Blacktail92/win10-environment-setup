@@ -53,6 +53,7 @@ $box_pkgs = @(
 
 )
 
+# capframex
 # processhacker 3
 # msi afterburner beta
 # Install-BoxstarterPackage brave-nightly --pre # returns error
