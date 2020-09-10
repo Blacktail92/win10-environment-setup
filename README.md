@@ -1,2 +1,3 @@
-# win10_env_script
-My custom Windows 10 deployment soultion
+# Windows 10 Environment Setup
+
+Script to build a custom Windows 10 environment.
