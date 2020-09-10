@@ -45,6 +45,7 @@ if %errorlevel% equ 0 echo Task registered.
 for %%G in (%_log_file%) do set _log_size=%%~zG)
 if %_log_size% equ 0 (
     echo Operation successful.
+    del %_log_file% /f /q
 ) else (
     echo Something went wrong, log file: %_log_file% & echo:
     type %_log_file%
