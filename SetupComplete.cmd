@@ -1,14 +1,14 @@
 @echo off
 
-:: Log file
+:: log file
 set _log_file=%temp%\SetupComplete_errors.log
 
-:: Raw URL of script to be executed
-set _URL=https://raw.githubusercontent.com/Sycnex/Windows10Debloater/master/Windows10Debloater.ps1
+:: location of file to be executed (url must be raw)
+set _file=https://raw.githubusercontent.com/Sycnex/Windows10Debloater/master/Windows10Debloater.ps1
 
-:: Task settings
+:: task settings
 set _TaskName="Windows Environment Setup"
-set _TaskArgs=Invoke-Expression((New-Object System.Net.WebClient).DownloadString('%_URL%')); Unregister-ScheduledTask -TaskName '%_TaskName%' -Confirm:`$false
+set _TaskArgs=Invoke-Expression((New-Object System.Net.WebClient).DownloadString('%_file%')); Unregister-ScheduledTask -TaskName '%_TaskName%' -Confirm:`$false
 set _Principal=$P=New-ScheduledTaskPrincipal -GroupId Administrators -RunLevel Highest
 set _Trigger=$T=New-ScheduledTaskTrigger -AtLogon
 set _Settings=$S=New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries
@@ -19,29 +19,29 @@ set _RegTask=Register-ScheduledTask -TaskName '%_TaskName%' -Force -InputObject 
 call:_start_logging 2>%_log_file%
 
 :_start_logging
-:: Check elevation
+:: check elevation
 openfiles >nul
-if %ERRORLEVEL% neq 0 call:_exit
+if %errorlevel% neq 0 call:_exit
 
-:: Delete task if exists
-schtasks /QUERY /TN %_TaskName% >nul 2>&1
-if %ERRORLEVEL% equ 0 (
+:: delete task if exists
+schtasks /query /tn %_TaskName% >nul 2>&1
+if %errorlevel% equ 0 (
     echo Removing existing task...
-    schtasks /DELETE /F /TN %_TaskName% >nul
-    if %ERRORLEVEL% equ 0 echo Task removed.
+    schtasks /delete /f /tn %_TaskName% >nul
+    if %errorlevel% equ 0 echo Task removed.
 )
 
-:: Create and register task
+:: create and register task
 echo Creating scheduled task...
 powershell -command %_Principal%; %_Trigger%; %_Settings%; %_Action%; %_CreateTask%; %_RegTask% >nul
-if %ERRORLEVEL% equ 0 echo Task created.
+if %errorlevel% equ 0 echo Task created.
 
-:: Check if registered
-schtasks /QUERY /TN %_TaskName% >nul
-if %ERRORLEVEL% equ 0 echo Task registered.
+:: check if registered
+schtasks /query /tn %_TaskName% >nul
+if %errorlevel% equ 0 echo Task registered.
 
 :_exit
-:: Check error logs and print result
+:: check error logs and print result
 for %%G in (%_log_file%) do set _log_size=%%~zG)
 if %_log_size% equ 0 (
     echo Operation successful.
