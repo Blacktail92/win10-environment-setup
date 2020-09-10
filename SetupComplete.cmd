@@ -42,7 +42,7 @@ if %errorlevel% equ 0 echo Task registered.
 
 :_exit
 :: check error logs and print result
-for %%G in (%_log_file%) do set _log_size=%%~zG)
+for %%G in (%_log_file%) do set _log_size=%%~zG
 if %_log_size% equ 0 (
     echo Operation successful.
     del %_log_file% /f /q
