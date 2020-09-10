@@ -1,16 +1,9 @@
 @echo off
 
-:: Check elevation
-openfiles>nul 2>&1
-if %ERRORLEVEL% neq 0 (
-    exit /B %ERRORLEVEL%
-)
+:: Log file
+set _log_file=%temp%\SetupComplete_errors.log
 
-:: Variables
-set /A _error_code=0
-set _log_file=c:/logs.txt
-
-:: Raw URL of the powershell script to be executed
+:: Raw URL of script to be executed
 set _URL=https://raw.githubusercontent.com/Sycnex/Windows10Debloater/master/Windows10Debloater.ps1
 
 :: Task settings
@@ -23,28 +16,37 @@ set _Action=$A=New-ScheduledTaskAction -Execute powershell -Argument \"%_TaskArg
 set _CreateTask=$C=New-ScheduledTask -Principal $P -Trigger $T -Settings $S -Action $A
 set _RegTask=Register-ScheduledTask -TaskName '%_TaskName%' -Force -InputObject $C
 
+call:_start_logging 2>%_log_file%
+
+:_start_logging
+:: Check elevation
+openfiles >nul
+if %ERRORLEVEL% neq 0 call:_exit
+
 :: Delete task if exists
-schtasks /QUERY /TN %_TaskName%>nul 2>>%_log_file%
+schtasks /QUERY /TN %_TaskName% >nul 2>&1
 if %ERRORLEVEL% equ 0 (
     echo Removing existing task...
-    schtasks /DELETE /F /TN %_TaskName%>nul 2>>%_log_file%
+    schtasks /DELETE /F /TN %_TaskName% >nul
+    if %ERRORLEVEL% equ 0 echo Task removed.
 )
 
 :: Create and register task
 echo Creating scheduled task...
-powershell -command %_Principal%; %_Trigger%; %_Settings%; %_Action%; %_CreateTask%; %_RegTask%>nul 2>>%_log_file%
-if %ERRORLEVEL% neq 0 (
-    set /A _error_code=1
-)
-:: Check if registered
-schtasks /QUERY /TN %_TaskName%>nul 2>>%_log_file%
-if %ERRORLEVEL% neq 0 (
-    set /A _error_code=1
-)
+powershell -command %_Principal%; %_Trigger%; %_Settings%; %_Action%; %_CreateTask%; %_RegTask% >nul
+if %ERRORLEVEL% equ 0 echo Task created.
 
-:: Print result
-if %_error_code% equ 0 (
-    echo Task created successfully.
+:: Check if registered
+schtasks /QUERY /TN %_TaskName% >nul
+if %ERRORLEVEL% equ 0 echo Task registered.
+
+:_exit
+:: Check error logs and print result
+for %%G in (%_log_file%) do set _log_size=%%~zG)
+if %_log_size% equ 0 (
+    echo Operation successful.
 ) else (
-    echo Error! Log file: %_log_file%
+    echo Something went wrong, log file: %_log_file% & echo:
+    type %_log_file%
+    timeout /t 3 >nul 2>&1 & exit
 )
