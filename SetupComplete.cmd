@@ -8,7 +8,7 @@ set _file=https://raw.githubusercontent.com/Sycnex/Windows10Debloater/master/Win
 
 :: task settings
 set _TaskName="Windows Environment Setup"
-set _TaskArgs=Invoke-Expression((New-Object System.Net.WebClient).DownloadString('%_file%')); Unregister-ScheduledTask -TaskName '%_TaskName%' -Confirm:`$false
+set _TaskArgs=Invoke-Expression((New-Object System.Net.WebClient).DownloadString('%_file%')); Unregister-ScheduledTask '%_TaskName%' -Confirm:`$false
 set _Principal=$P=New-ScheduledTaskPrincipal -GroupId Administrators -RunLevel Highest
 set _Trigger=$T=New-ScheduledTaskTrigger -AtLogon
 set _Settings=$S=New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries
