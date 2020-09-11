@@ -1,6 +1,2 @@
-snippet.ps1
-boxstarter module commands.txt
-Get-Module -ListAvailable.txt
-installed_apps.txt
 .vscode/
-.gitignore
+notes/
