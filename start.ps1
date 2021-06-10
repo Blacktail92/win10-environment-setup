@@ -70,8 +70,9 @@ slmgr /xpr
 
 # disable hpet
 Write-Output "Disable HPET"
-bcdedit /set useplatformclock no
+bcdedit /deletevalue useplatformclock
 bcdedit /set disabledynamictick yes
+Get-PnpDevice | Where-Object {$_.friendlyname -like "High Precision Event Timer"} | Disable-PnpDevice -Confirm:$false
 
 # power plan
 # powercfg -devicequery wake_armed # List devices that are currently configured to wake the system from any sleep state.
